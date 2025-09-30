@@ -1,0 +1,6 @@
+timestamp,sender,receiver,message
+2025-09-29 10:00,+9188888888,+447777777777,"Hey, is the package ready?"
+2025-09-29 10:02,+447777777777,+9188888888,"Yes, send the crypto to 1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa"
+2025-09-29 11:30,+9188888888,+919999999999,"Meeting confirmed for tomorrow at the warehouse."
+2025-09-30 09:00,+146666666666,+9188888888,"Did you get the wire transfer?"
+2025-09-30 09:05,+9188888888,+146666666666,"Yes, the funds have been received. Deleting this chat now."
