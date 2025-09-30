@@ -2,16 +2,17 @@
 
 A prototype application that leverages Large Language Models (LLMs) to analyze Universal Forensic Extraction Device Reports (UFDRs) using natural language queries. This tool is designed to help investigating officers quickly find actionable intelligence from massive datasets without needing technical expertise.
 
+![AI Forensic Analyzer Screenshot](app-screenshot.png)
 
 ---
 
-## ## The Problem
+## The Problem
 
 Digital forensic reports (UFDRs) contain huge amounts of data like chats, calls, and contacts. Manually sifting through this data is slow, tedious, and can delay investigations. This tool solves that problem by providing an intelligent, easy-to-use interface for data analysis.
 
 ---
 
-## ## Features ✨
+## Features
 
 * **Natural Language Queries:** Ask questions in plain English (e.g., "Show me chats containing 'crypto'").
 * **AI-Powered Analysis:** Uses an AI backend (like Google Gemini or OpenAI) to understand the user's query and generate the appropriate data filtering code on the fly.
@@ -20,7 +21,7 @@ Digital forensic reports (UFDRs) contain huge amounts of data like chats, calls,
 
 ---
 
-## ## Tech Stack 🛠️
+## Tech Stack
 
 * **Language:** Python
 * **Framework:** Streamlit
@@ -29,7 +30,7 @@ Digital forensic reports (UFDRs) contain huge amounts of data like chats, calls,
 
 ---
 
-## ## Setup and Installation
+## Setup and Installation
 
 Follow these steps to run the project locally on your machine.
 
