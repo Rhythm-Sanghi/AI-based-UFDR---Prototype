@@ -1,4 +1,4 @@
-# AI-based UFDR Analysis Tool Prototype 🕵️
+# AI-based UFDR Analysis Tool Prototype 
 
 A prototype application that leverages Large Language Models (LLMs) to analyze Universal Forensic Extraction Device Reports (UFDRs) using natural language queries. This tool is designed to help investigating officers quickly find actionable intelligence from massive datasets without needing technical expertise.
 
@@ -76,7 +76,7 @@ The application will open in your web browser!
 
 ---
 
-## ## How to Use
+## How to Use
 
 Once the application is running:
 1.  View the sample data in the "View Raw Data" expander if you wish.
