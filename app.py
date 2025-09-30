@@ -1,15 +1,15 @@
 import streamlit as st
 import pandas as pd
-from openai import OpenAI
+import google.generativeai as genai
 import os
 
 try:
-    client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
-except Exception as e:
-    st.error("Please set your OPENAI_API_KEY in .streamlit/secrets.toml")
+    genai.configure(api_key=st.secrets["GEMINI_API_KEY"])
+except:
+    st.error("Error: Make sure your GEMINI_API_KEY is set in .streamlit/secrets.toml!")
     st.stop()
 
-st.title("AI Forensic Analysis Tool ")
+st.title(" AI Forensic Analysis Tool")
 st.write("AI will find the answers in the data.")
 
 try:
@@ -42,29 +42,25 @@ user_question = st.text_input(
 
 if st.button("Analyze"):
     if user_question:
-        system_prompt = """
-        You are a Python data analyst. Your job is to write a single line of Python code to answer a question.
-        You have a Python dictionary named 'dataframes' which contains three pandas DataFrames: 'chats', 'calls', and 'contacts'.
-        The columns are:
-        - chats: ['timestamp', 'sender', 'receiver', 'message']
-        - calls: ['timestamp', 'caller', 'receiver', 'duration_seconds']
-        - contacts: ['name', 'number']
+        prompt = f"""
+        You are a Python data analyst. Write a single line of Python code to answer a question.
+        You have a dictionary of pandas DataFrames called 'dataframes'. The keys are 'chats', 'calls', and 'contacts'.
+        - chats columns: ['timestamp', 'sender', 'receiver', 'message']
+        - calls columns: ['timestamp', 'caller', 'receiver', 'duration_seconds']
+        - contacts columns: ['name', 'number']
         
-        Based on the user's question, you must write one line of Python code to find the answer.
-        IMPORTANT: Only output the code itself, with no explanation or other text.
+        Based on the user's question, write one line of Python code to find the answer.
+        Only output the code itself.
+
+        User's question: "{user_question}"
+        Python code:
         """
 
-        with st.spinner("AI is thinking..."):
+        with st.spinner("The AI is thinking..."):
             try:
-                response = client.chat.completions.create(
-                    model="gpt-3.5-turbo",
-                    messages=[
-                        {"role": "system", "content": system_prompt},
-                        {"role": "user", "content": user_question}
-                    ]
-                )
-                
-                ai_generated_code = response.choices[0].message.content.strip()
+                model = genai.GenerativeModel('gemini-1.5-flash')
+                response = model.generate_content(prompt)
+                ai_generated_code = response.text.strip()
                 
                 st.info(f"AI Generated this code: `{ai_generated_code}`")
 
