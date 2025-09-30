@@ -63,9 +63,6 @@ pip install -r requirements.txt
      ```toml
      # For Google Gemini
      GEMINI_API_KEY = "your-google-api-key-here"
-
-     # Or for OpenAI
-     # OPENAI_API_KEY = "your-openai-api-key-here"
      ```
 
 **5. Run the Application:**
