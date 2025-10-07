@@ -26,7 +26,7 @@ Digital forensic reports (UFDRs) contain huge amounts of data like chats, calls,
 * **Language:** Python
 * **Framework:** Streamlit
 * **Data Handling:** Pandas
-* **AI Backend:** Google Gemini API / OpenAI API
+* **AI Backend:** Google Gemini API
 
 ---
 
