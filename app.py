@@ -11,7 +11,8 @@ except Exception as e:
     st.stop()
 
 st.title("AI Forensic Analysis Tool")
-st.write("Ask a question about the data, and the AI will explain the answer in plain English.")
+st.write("Ask a question about the sample data for a plain-English answer.")
+st.caption("Only the first 20 rows of each CSV are sent to Gemini. Answers may be incomplete or incorrect.")
 
 # Load datasets
 try:
