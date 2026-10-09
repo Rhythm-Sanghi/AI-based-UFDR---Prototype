@@ -1,82 +1,57 @@
-# AI-based UFDR Analysis Tool Prototype 
+# UFDR sample-data prototype
 
-A prototype application that leverages Large Language Models (LLMs) to analyze Universal Forensic Extraction Device Reports (UFDRs) using natural language queries. This tool is designed to help investigating officers quickly find actionable intelligence from massive datasets without needing technical expertise.
+A Streamlit experiment that asks Gemini questions about sample chat, call and
+contact CSVs. It sends the **first 20 rows of each CSV** to the model and displays
+a plain-English answer. It does not parse UFDR archives, execute generated
+filtering code or analyze every record in a large report.
 
-![AI Forensic Analyzer Screenshot](app-screenshot.png)
+![Application screenshot](app-screenshot.png)
 
----
+## Run locally
 
-## The Problem
-
-Digital forensic reports (UFDRs) contain huge amounts of data like chats, calls, and contacts. Manually sifting through this data is slow, tedious, and can delay investigations. This tool solves that problem by providing an intelligent, easy-to-use interface for data analysis.
-
----
-
-## Features
-
-* **Natural Language Queries:** Ask questions in plain English (e.g., "Show me chats containing 'crypto'").
-* **AI-Powered Analysis:** Uses an AI backend (like Google Gemini or OpenAI) to understand the user's query and generate the appropriate data filtering code on the fly.
-* **Simple Web Interface:** Built with Streamlit for a clean and intuitive user experience.
-* **Handles Mock Data:** Demonstrates the concept using sample CSV files for chats, calls, and contacts.
-
----
-
-## Tech Stack
-
-* **Language:** Python
-* **Framework:** Streamlit
-* **Data Handling:** Pandas
-* **AI Backend:** Google Gemini API
-
----
-
-## Setup and Installation
-
-Follow these steps to run the project locally on your machine.
-
-**1. Clone the Repository:**
-```bash
-git clone [https://github.com/YourUsername/AI-based-UFDR---Prototype.git](https://github.com/YourUsername/AI-based-UFDR---Prototype.git)
+```sh
+git clone https://github.com/Rhythm-Sanghi/AI-based-UFDR---Prototype.git
 cd AI-based-UFDR---Prototype
-```
-**2. Create and Activate a Virtual Environment:**
-```bash
-# Create the environment
 python -m venv .venv
-
-# Activate on Windows
-.\.venv\Scripts\Activate
-
-# Activate on macOS/Linux
-# source .venv/bin/activate
 ```
 
-**3. Install Dependencies:**
-```bash
-pip install -r requirements.txt
+Activate `.venv` (`.venv\Scripts\Activate.ps1` on Windows, or
+`source .venv/bin/activate` on macOS/Linux), then install dependencies:
+
+```sh
+python -m pip install -r requirements.txt
 ```
 
-**4. Add Your API Key:**
-   * Create a new folder in the root directory named `.streamlit`.
-   * Inside the `.streamlit` folder, create a new file named `secrets.toml`.
-   * Open `secrets.toml` and add your API key like this (use either a Gemini or OpenAI key depending on the version of `app.py` you are using):
-     ```toml
-     # For Google Gemini
-     GEMINI_API_KEY = "your-google-api-key-here"
-     ```
+Create `.streamlit/secrets.toml` locally:
 
-**5. Run the Application:**
-```bash
+```toml
+GEMINI_API_KEY = "your-google-api-key-here"
+```
+
+The secrets file is ignored by Git. The current implementation uses Gemini
+only, with model `gemini-2.5-flash` configured in `app.py`.
+
+```sh
 streamlit run app.py
 ```
-The application will open in your web browser!
 
----
+## Use
 
-## How to Use
+Expand **Show raw data** to inspect the bundled CSVs. Enter a question and click
+**Analyze**. The **Answer** section displays the model's response, not generated
+Python code or a validated query result.
 
-Once the application is running:
-1.  View the sample data in the "View Raw Data" expander if you wish.
-2.  Type a question about the data into the text box (e.g., `Find calls longer than 200 seconds`).
-3.  Click the **Analyze** button.
-4.  The AI-generated code and the resulting data table will appear on the screen.
+## Limits
+
+- Bundled records are sample data for a demonstration.
+- Only the first 20 rows per file enter the prompt, even if the raw-data view
+  shows more rows. Answers cannot establish totals or facts about omitted rows.
+- Those excerpts are sent to the external Gemini service. Use sample data for
+  this demonstration rather than substituting confidential reports.
+- Model answers can be incorrect; check them against the source rows. This
+  prototype does not provide a forensic validation or evidence-review workflow.
+
+## Files
+
+`app.py` contains the interface and model request. `data/` contains the three
+sample CSVs. `requirements.txt` lists Streamlit, pandas and the Gemini client.
